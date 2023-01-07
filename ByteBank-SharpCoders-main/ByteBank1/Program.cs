@@ -1,21 +1,46 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 
-namespace ByteBank1 {
+namespace ByteBank1
+{
 
-    public class Program {
+    public class Program
+    {
 
-        static void ShowMenu() {
-            Console.WriteLine("1 - Inserir novo usuário");
-            Console.WriteLine("2 - Deletar um usuário");
-            Console.WriteLine("3 - Listar todas as contas registradas");
-            Console.WriteLine("4 - Detalhes de um usuário");
-            Console.WriteLine("5 - Quantia armazenada no banco");
-            Console.WriteLine("6 - Manipular a conta");
-            Console.WriteLine("0 - Para sair do programa");
-            Console.Write("Digite a opção desejada: ");
+        static void ShowMenu()
+        {
+            string nomeDeLoginTemporario = "", senhaDeLoginTemporaria = "";
+            System.Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n" +
+            "Por favor, primeiro digite o seu nome para fazer login: ");
+            nomeDeLoginTemporario = Console.ReadLine();
+
+            System.Console.WriteLine("E a sua senha: ");
+            senhaDeLoginTemporaria = Console.ReadLine();
+
+            System.Console.WriteLine("Pronto!\nAgora é só digitar o seu nome e depois a senha novamente para logar :)");
+            string nomeDeLoginFinal = Console.ReadLine();
+            string senhaDeLoginFinal = Console.ReadLine();
+
+
+            if ((nomeDeLoginTemporario != "" && nomeDeLoginTemporario == nomeDeLoginFinal) && (senhaDeLoginTemporaria != "" && senhaDeLoginTemporaria == senhaDeLoginFinal))
+            {
+                Console.WriteLine("Ótimo!\n" + "Antes de começar a usar, vamos configurar alguns valores: ");
+                Console.WriteLine("1 - Inserir novo usuário");
+                Console.WriteLine("2 - Deletar um usuário");
+                Console.WriteLine("3 - Listar todas as contas registradas");
+                Console.WriteLine("4 - Detalhes de um usuário");
+                Console.WriteLine("5 - Quantia armazenada no banco");
+                Console.WriteLine("6 - Manipular a conta");
+                Console.WriteLine("0 - Para sair do programa");
+                Console.Write("Digite a opção desejada: ");
+            }
+            else
+            {
+                System.Console.WriteLine("Os dados não conferem :(\n" + "Quer tentar novamente? Digite '5' para Sim ou '0' para Não e sair do terminal: ");
+            }
         }
 
-        static void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas , List<double> saldos) {
+        static void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        {
             Console.Write("Digite o cpf: ");
             cpfs.Add(Console.ReadLine());
             Console.Write("Digite o nome: ");
@@ -25,12 +50,14 @@ namespace ByteBank1 {
             saldos.Add(0);
         }
 
-        static void DeletarUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos) {
+        static void DeletarUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        {
             Console.Write("Digite o cpf: ");
             string cpfParaDeletar = Console.ReadLine();
             int indexParaDeletar = cpfs.FindIndex(cpf => cpf == cpfParaDeletar);
-          
-            if(indexParaDeletar == -1) {
+
+            if (indexParaDeletar == -1)
+            {
                 Console.WriteLine("Não foi possível deletar esta Conta");
                 Console.WriteLine("MOTIVO: Conta não encontrada.");
             }
@@ -43,18 +70,22 @@ namespace ByteBank1 {
             Console.WriteLine("Conta deletada com sucesso");
         }
 
-        static void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos) {
-            for(int i = 0; i < cpfs.Count; i++) {
+        static void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
+        {
+            for (int i = 0; i < cpfs.Count; i++)
+            {
                 ApresentaConta(i, cpfs, titulares, saldos);
             }
         }
 
-        static void ApresentarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos) {
+        static void ApresentarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos)
+        {
             Console.Write("Digite o cpf: ");
             string cpfParaApresentar = Console.ReadLine();
             int indexParaApresentar = cpfs.FindIndex(cpf => cpf == cpfParaApresentar);
 
-            if (indexParaApresentar == -1) {
+            if (indexParaApresentar == -1)
+            {
                 Console.WriteLine("Não foi possível apresentar esta Conta");
                 Console.WriteLine("MOTIVO: Conta não encontrada.");
             }
@@ -62,18 +93,21 @@ namespace ByteBank1 {
             ApresentaConta(indexParaApresentar, cpfs, titulares, saldos);
         }
 
-        static void ApresentarValorAcumulado(List<double> saldos) {
+        static void ApresentarValorAcumulado(List<double> saldos)
+        {
             Console.WriteLine($"Total acumulado no banco: {saldos.Sum()}");
             // saldos.Sum(); ou .Agregatte(0.0, (x, y) => x + y)
         }
 
-        static void ApresentaConta( int index, List<string> cpfs, List<string> titulares, List<double> saldos) {
+        static void ApresentaConta(int index, List<string> cpfs, List<string> titulares, List<double> saldos)
+        {
             Console.WriteLine($"CPF = {cpfs[index]} | Titular = {titulares[index]} | Saldo = R${saldos[index]:F2}");
         }
 
-        public static void Main(string[] args) {
+        public static void Main(string[] args)
+        {
 
-            Console.WriteLine("Antes de começar a usar, vamos configurar alguns valores: ");
+            // Console.WriteLine("Antes de começar a usar, vamos configurar alguns valores: ");
 
             List<string> cpfs = new List<string>();
             List<string> titulares = new List<string>();
@@ -82,13 +116,15 @@ namespace ByteBank1 {
 
             int option;
 
-            do {
+            do
+            {
                 ShowMenu();
                 option = int.Parse(Console.ReadLine());
 
                 Console.WriteLine("-----------------");
 
-                switch (option) {
+                switch (option)
+                {
                     case 0:
                         Console.WriteLine("Estou encerrando o programa...");
                         break;
@@ -104,13 +140,16 @@ namespace ByteBank1 {
                     case 4:
                         ApresentarUsuario(cpfs, titulares, saldos);
                         break;
+                    case 5:
+                        ShowMenu();
+                        break;
                 }
 
                 Console.WriteLine("-----------------");
 
             } while (option != 0);
-            
-            
+
+
 
         }
 
