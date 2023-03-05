@@ -8,7 +8,7 @@ namespace ByteBank1
 
         static void ShowMenu()
         {
-            string nomeDeLoginTemporario = "", senhaDeLoginTemporaria = "";
+            string nomeDeLoginTemporario = string.Empty, senhaDeLoginTemporaria = string.Empty;
             System.Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n" +
             "Por favor, primeiro digite o seu nome para fazer login: ");
             nomeDeLoginTemporario = Console.ReadLine();
