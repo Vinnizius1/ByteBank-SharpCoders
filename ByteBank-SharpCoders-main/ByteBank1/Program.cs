@@ -1,29 +1,43 @@
 ﻿using System.Reflection.Metadata.Ecma335;
-
 namespace ByteBank1
 {
-
     public class Program
     {
-
-        static void ShowMenu()
+        public static void Main(string[] args)
         {
-            string nomeDeLoginTemporario = string.Empty, senhaDeLoginTemporaria = string.Empty;
-            System.Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n" +
-            "Por favor, primeiro digite o seu nome para fazer login: ");
-            nomeDeLoginTemporario = Console.ReadLine();
-
-            System.Console.WriteLine("E a sua senha: ");
-            senhaDeLoginTemporaria = Console.ReadLine();
-
-            System.Console.WriteLine("Pronto!\nAgora é só digitar o seu nome e depois a senha novamente para logar :)");
-            string nomeDeLoginFinal = Console.ReadLine();
-            string senhaDeLoginFinal = Console.ReadLine();
-
-
-            if ((nomeDeLoginTemporario != "" && nomeDeLoginTemporario == nomeDeLoginFinal) && (senhaDeLoginTemporaria != "" && senhaDeLoginTemporaria == senhaDeLoginFinal))
+            static void fazerLogin()
             {
-                Console.WriteLine("Ótimo!\n" + "Antes de começar a usar, vamos configurar alguns valores: ");
+                Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n\n" +
+                    "Por favor, primeiro digite o seu nome para fazer login: ");
+                string nomeDeLoginTemporario = Console.ReadLine();
+                Console.WriteLine("E a sua senha: ");
+                string senhaDeLoginTemporaria = Console.ReadLine();
+
+                // Verificação se as informações não são vazias
+                if (nomeDeLoginTemporario == "" || senhaDeLoginTemporaria == "")
+                {
+                    Console.WriteLine("O campo de nome ou da senha não podem ser vazios.\n");
+                    Console.WriteLine("-----------------\n");
+                    fazerLogin();
+                }
+
+                Console.WriteLine("Pronto!\nAgora é só digitar o seu nome e depois a senha novamente para logar :)");
+                string nomeDeLoginFinal = Console.ReadLine();
+                string senhaDeLoginFinal = Console.ReadLine();
+
+                // Verificação se as informações são iguais
+                bool nomeESenhasParaLogar = (nomeDeLoginTemporario == nomeDeLoginFinal) && (senhaDeLoginTemporaria == senhaDeLoginFinal);
+
+                if (nomeESenhasParaLogar) { ShowMenu(); return; }
+
+                Console.WriteLine("Estou encerrando o programa...");
+                Environment.Exit(0);
+
+            }
+
+            static void ShowMenu()
+            {
+                Console.WriteLine("O que você deseja fazer: ");
                 Console.WriteLine("1 - Inserir novo usuário");
                 Console.WriteLine("2 - Deletar um usuário");
                 Console.WriteLine("3 - Listar todas as contas registradas");
@@ -33,94 +47,20 @@ namespace ByteBank1
                 Console.WriteLine("0 - Para sair do programa");
                 Console.Write("Digite a opção desejada: ");
             }
-            else
-            {
-                System.Console.WriteLine("Os dados não conferem :(\n" + "Quer tentar novamente? Digite '5' para Sim ou '0' para Não e sair do terminal: ");
-            }
-        }
 
-        static void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
-        {
-            Console.Write("Digite o cpf: ");
-            cpfs.Add(Console.ReadLine());
-            Console.Write("Digite o nome: ");
-            titulares.Add(Console.ReadLine());
-            Console.Write("Digite a senha: ");
-            senhas.Add(Console.ReadLine());
-            saldos.Add(0);
-        }
-
-        static void DeletarUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
-        {
-            Console.Write("Digite o cpf: ");
-            string cpfParaDeletar = Console.ReadLine();
-            int indexParaDeletar = cpfs.FindIndex(cpf => cpf == cpfParaDeletar);
-
-            if (indexParaDeletar == -1)
-            {
-                Console.WriteLine("Não foi possível deletar esta Conta");
-                Console.WriteLine("MOTIVO: Conta não encontrada.");
-            }
-
-            cpfs.Remove(cpfParaDeletar);
-            titulares.RemoveAt(indexParaDeletar);
-            senhas.RemoveAt(indexParaDeletar);
-            saldos.RemoveAt(indexParaDeletar);
-
-            Console.WriteLine("Conta deletada com sucesso");
-        }
-
-        static void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
-        {
-            for (int i = 0; i < cpfs.Count; i++)
-            {
-                ApresentaConta(i, cpfs, titulares, saldos);
-            }
-        }
-
-        static void ApresentarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos)
-        {
-            Console.Write("Digite o cpf: ");
-            string cpfParaApresentar = Console.ReadLine();
-            int indexParaApresentar = cpfs.FindIndex(cpf => cpf == cpfParaApresentar);
-
-            if (indexParaApresentar == -1)
-            {
-                Console.WriteLine("Não foi possível apresentar esta Conta");
-                Console.WriteLine("MOTIVO: Conta não encontrada.");
-            }
-
-            ApresentaConta(indexParaApresentar, cpfs, titulares, saldos);
-        }
-
-        static void ApresentarValorAcumulado(List<double> saldos)
-        {
-            Console.WriteLine($"Total acumulado no banco: {saldos.Sum()}");
-            // saldos.Sum(); ou .Agregatte(0.0, (x, y) => x + y)
-        }
-
-        static void ApresentaConta(int index, List<string> cpfs, List<string> titulares, List<double> saldos)
-        {
-            Console.WriteLine($"CPF = {cpfs[index]} | Titular = {titulares[index]} | Saldo = R${saldos[index]:F2}");
-        }
-
-        public static void Main(string[] args)
-        {
-
-            // Console.WriteLine("Antes de começar a usar, vamos configurar alguns valores: ");
+            OperacoesBancarias operacoesBancarias = new OperacoesBancarias();
 
             List<string> cpfs = new List<string>();
             List<string> titulares = new List<string>();
             List<string> senhas = new List<string>();
             List<double> saldos = new List<double>();
-
             int option;
 
             do
             {
-                ShowMenu();
+                // ShowMenu();
+                fazerLogin();
                 option = int.Parse(Console.ReadLine());
-
                 Console.WriteLine("-----------------");
 
                 switch (option)
@@ -129,30 +69,25 @@ namespace ByteBank1
                         Console.WriteLine("Estou encerrando o programa...");
                         break;
                     case 1:
-                        RegistrarNovoUsuario(cpfs, titulares, senhas, saldos);
+                        operacoesBancarias.RegistrarNovoUsuario(cpfs, titulares, senhas, saldos);
+                        // ShowMenu();
                         break;
                     case 2:
-                        DeletarUsuario(cpfs, titulares, senhas, saldos);
+                        operacoesBancarias.DeletarUsuario(cpfs, titulares, senhas, saldos);
                         break;
                     case 3:
-                        ListarTodasAsContas(cpfs, titulares, saldos);
+                        operacoesBancarias.ListarTodasAsContas(cpfs, titulares, saldos);
                         break;
                     case 4:
-                        ApresentarUsuario(cpfs, titulares, saldos);
+                        operacoesBancarias.ApresentarUsuario(cpfs, titulares, saldos);
                         break;
                     case 5:
                         ShowMenu();
                         break;
                 }
-
                 Console.WriteLine("-----------------");
 
             } while (option != 0);
-
-
-
         }
-
     }
-
 }
