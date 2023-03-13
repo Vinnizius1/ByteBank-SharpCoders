@@ -1,7 +1,9 @@
-namespace ByteBank1
+namespace ByteBank1.Models
 {
     public class OperacoesBancarias
     {
+
+
         public void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
         {
             Console.Write("Digite o cpf: ");
