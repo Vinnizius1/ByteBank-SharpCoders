@@ -2,15 +2,15 @@ namespace ByteBank1.Models
 {
     public class Login
     {
-        public Login(string nomeDeLoginTemporario, string senhaDeLoginTemporaria, string nomeDeLoginFinal, string senhaDeLoginFinal)
+        public Login(string nomeDeLoginInicial, string senhaDeLoginInicial, string nomeDeLoginFinal, string senhaDeLoginFinal)
         {
 
-            if (nomeDeLoginTemporario == "" || senhaDeLoginTemporaria == "")
+            if (nomeDeLoginInicial == "" || senhaDeLoginInicial == "")
             {
                 throw new ArgumentException("Os campos não podem ser vazios.");
             }
 
-            if (nomeDeLoginFinal.ToLower() != nomeDeLoginTemporario.ToLower() || senhaDeLoginFinal.ToLower() != senhaDeLoginTemporaria.ToLower())
+            if (nomeDeLoginFinal.ToLower() != nomeDeLoginInicial.ToLower() || senhaDeLoginFinal.ToLower() != senhaDeLoginInicial.ToLower())
             {
                 throw new ArgumentException("Os dados não coincidem.");
             }

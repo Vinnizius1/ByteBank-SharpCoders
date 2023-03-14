@@ -2,9 +2,12 @@ namespace ByteBank1.Models
 {
     public class OperacoesBancarias
     {
-
-
-        public void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        List<string> cpfs = new List<string>();
+        List<string> titulares = new List<string>();
+        List<string> senhas = new List<string>();
+        List<double> saldos = new List<double>();
+        // public void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        public void RegistrarNovoUsuario()
         {
             Console.Write("Digite o cpf: ");
             cpfs.Add(Console.ReadLine());
@@ -15,7 +18,8 @@ namespace ByteBank1.Models
             saldos.Add(0);
         }
 
-        public void DeletarUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        // public void DeletarUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
+        public void DeletarUsuario()
         {
             Console.Write("Digite o cpf: ");
             string cpfParaDeletar = Console.ReadLine();
@@ -35,7 +39,8 @@ namespace ByteBank1.Models
             Console.WriteLine("Conta deletada com sucesso");
         }
 
-        public void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
+        // public void ListarTodasAsContas(List<string> cpfs, List<string> titulares, List<double> saldos)
+        public void ListarTodasAsContas()
         {
             for (int i = 0; i < cpfs.Count; i++)
             {
@@ -43,7 +48,8 @@ namespace ByteBank1.Models
             }
         }
 
-        public void ApresentarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos)
+        // public void ApresentarUsuario(List<string> cpfs, List<string> titulares, List<double> saldos)
+        public void ApresentarUsuario()
         {
             Console.Write("Digite o cpf: ");
             string cpfParaApresentar = Console.ReadLine();
@@ -58,7 +64,8 @@ namespace ByteBank1.Models
             ApresentaConta(indexParaApresentar, cpfs, titulares, saldos);
         }
 
-        public void ApresentarValorAcumulado(List<double> saldos)
+        // public void ApresentarValorAcumulado(List<double> saldos)
+        public void ApresentarValorAcumulado()
         {
             Console.WriteLine($"Total acumulado no banco: {saldos.Sum()}");
             // saldos.Sum(); ou .Agregatte(0.0, (x, y) => x + y)
