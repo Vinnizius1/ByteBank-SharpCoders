@@ -6,6 +6,7 @@ namespace ByteBank1.Models
         List<string> titulares = new List<string>();
         List<string> senhas = new List<string>();
         List<double> saldos = new List<double>();
+
         // public void RegistrarNovoUsuario(List<string> cpfs, List<string> titulares, List<string> senhas, List<double> saldos)
         public void RegistrarNovoUsuario()
         {

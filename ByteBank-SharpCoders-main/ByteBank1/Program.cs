@@ -4,14 +4,14 @@ using ByteBank1.Models;
 
 
 
-Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n\n" +
+Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n" +
     "Por favor, primeiro digite o seu nome para fazer login: ");
 string nomeDeLoginInicial = Console.ReadLine();
 
 Console.WriteLine("E a sua senha: ");
 string senhaDeLoginInicial = Console.ReadLine();
 
-Console.WriteLine("Pronto! Agora é só digitar o seu nome primeiro e depois\n" +
+Console.WriteLine("\nPronto! Agora é só digitar o seu nome primeiro e depois\n" +
     "a senha novamente para logar: ");
 string nomeDeLoginFinal = Console.ReadLine();
 
@@ -20,6 +20,7 @@ string senhaDeLoginFinal = Console.ReadLine();
 
 Login login = new Login(nomeDeLoginInicial, senhaDeLoginInicial, nomeDeLoginFinal, senhaDeLoginFinal);
 
+Console.Clear();
 
 OperacoesBancarias op = new OperacoesBancarias();
 
@@ -55,6 +56,7 @@ while (usuarioEstaLogado)
     {
         case "0":
             Console.WriteLine("Estou encerrando o programa...");
+            Console.WriteLine("-----------------");
             usuarioEstaLogado = false;
             break;
         case "1":
@@ -77,7 +79,8 @@ while (usuarioEstaLogado)
             // ShowMenu();
             break;
     }
-    Console.WriteLine("-----------------");
+    Console.WriteLine("Pressione uma tecla para continuar");
+    Console.ReadLine();
 
     /* } while (option != 0); */
 }
