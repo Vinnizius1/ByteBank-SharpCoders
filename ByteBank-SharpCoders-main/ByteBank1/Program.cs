@@ -1,9 +1,6 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using ByteBank1.Models;
 
-
-
-
 Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n" +
     "Por favor, primeiro digite o seu nome para fazer login: ");
 string nomeDeLoginInicial = Console.ReadLine();
@@ -20,11 +17,8 @@ string senhaDeLoginFinal = Console.ReadLine();
 
 Login login = new Login(nomeDeLoginInicial, senhaDeLoginInicial, nomeDeLoginFinal, senhaDeLoginFinal);
 
-Console.Clear();
-
 OperacoesBancarias op = new OperacoesBancarias();
 
-// Verificação se as informações são iguais
 bool usuarioEstaLogado = true;
 
 while (usuarioEstaLogado)
@@ -40,18 +34,6 @@ while (usuarioEstaLogado)
     Console.WriteLine("0 - Para sair do programa");
     Console.Write("Digite a opção desejada: ");
 
-    // List<string> cpfs = new List<string>();
-    // List<string> titulares = new List<string>();
-    // List<string> senhas = new List<string>();
-    // List<double> saldos = new List<double>();
-
-    /* do
-    {
-        // ShowMenu();
-        // fazerLogin();
-        option = int.Parse(Console.ReadLine());
-        Console.WriteLine("-----------------"); */
-
     switch (Console.ReadLine())
     {
         case "0":
@@ -60,29 +42,22 @@ while (usuarioEstaLogado)
             usuarioEstaLogado = false;
             break;
         case "1":
-            // op.RegistrarNovoUsuario(cpfs, titulares, senhas, saldos);
             op.RegistrarNovoUsuario();
             break;
         case "2":
-            // op.DeletarUsuario(cpfs, titulares, senhas, saldos);
             op.DeletarUsuario();
             break;
         case "3":
-            // op.ListarTodasAsContas(cpfs, titulares, saldos);
             op.ListarTodasAsContas();
             break;
         case "4":
-            // op.ApresentarUsuario(cpfs, titulares, saldos);
             op.ApresentarUsuario();
             break;
         case "5":
-            // ShowMenu();
             break;
     }
     Console.WriteLine("Pressione uma tecla para continuar");
     Console.ReadLine();
-
-    /* } while (option != 0); */
 }
 
 
