@@ -17,7 +17,7 @@ string nomeDeLoginFinal = Console.ReadLine() ?? string.Empty;
 Console.WriteLine("Agora a sua senha senha: ");
 string senhaDeLoginFinal = Console.ReadLine() ?? string.Empty;
 
-Login2 login2 = new Login2(nomeDeLoginFinal, senhaDeLoginFinal, nomeDeLoginFinal, senhaDeLoginInicial);
+Login2 login2 = new Login2(nomeDeLoginFinal, senhaDeLoginFinal, nomeDeLoginInicial, senhaDeLoginInicial);
 
 OperacoesBancarias op = new OperacoesBancarias();
 

@@ -15,7 +15,7 @@ namespace ByteBank1.Models
     {
         public Login2(string nomeDeLoginInicial, string senhaDeLoginInicial, string nomeDeLoginFinal, string senhaDeLoginFinal)
         {
-            if (nomeDeLoginFinal.Equals(nomeDeLoginInicial, StringComparison.Ordinal) || senhaDeLoginFinal.Equals(senhaDeLoginInicial, StringComparison.Ordinal))
+            if (!nomeDeLoginFinal.Equals(nomeDeLoginInicial, StringComparison.Ordinal) || !senhaDeLoginFinal.Equals(senhaDeLoginInicial, StringComparison.Ordinal))
             {
                 throw new ArgumentException("Os dados não coincidem.");
             }
