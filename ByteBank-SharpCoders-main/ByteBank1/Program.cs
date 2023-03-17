@@ -3,19 +3,21 @@ using ByteBank1.Models;
 
 Console.WriteLine("Olá! Seja bem-vindo ao seu Banco!\n" +
     "Por favor, primeiro digite o seu nome para fazer login: ");
-string nomeDeLoginInicial = Console.ReadLine();
+string nomeDeLoginInicial = Console.ReadLine() ?? string.Empty;
 
 Console.WriteLine("E a sua senha: ");
-string senhaDeLoginInicial = Console.ReadLine();
+string senhaDeLoginInicial = Console.ReadLine() ?? string.Empty;
+
+Login1 login1 = new Login1(nomeDeLoginInicial, senhaDeLoginInicial);
 
 Console.WriteLine("\nPronto! Agora é só digitar o seu nome primeiro e depois\n" +
     "a senha novamente para logar: ");
-string nomeDeLoginFinal = Console.ReadLine();
+string nomeDeLoginFinal = Console.ReadLine() ?? string.Empty;
 
 Console.WriteLine("Agora a sua senha senha: ");
-string senhaDeLoginFinal = Console.ReadLine();
+string senhaDeLoginFinal = Console.ReadLine() ?? string.Empty;
 
-Login login = new Login(nomeDeLoginInicial, senhaDeLoginInicial, nomeDeLoginFinal, senhaDeLoginFinal);
+Login2 login2 = new Login2(nomeDeLoginFinal, senhaDeLoginFinal, nomeDeLoginFinal, senhaDeLoginInicial);
 
 OperacoesBancarias op = new OperacoesBancarias();
 
