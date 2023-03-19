@@ -8,7 +8,7 @@ string nomeDeLoginInicial = Console.ReadLine() ?? string.Empty;
 Console.WriteLine("E a sua senha: ");
 string senhaDeLoginInicial = Console.ReadLine() ?? string.Empty;
 
-Login1 login1 = new Login1(nomeDeLoginInicial, senhaDeLoginInicial);
+LoginInicial loginInicial = new LoginInicial(nomeDeLoginInicial, senhaDeLoginInicial);
 
 Console.WriteLine("\nPronto! Agora é só digitar o seu nome primeiro e depois\n" +
     "a senha novamente para logar: ");
@@ -17,7 +17,8 @@ string nomeDeLoginFinal = Console.ReadLine() ?? string.Empty;
 Console.WriteLine("Agora a sua senha senha: ");
 string senhaDeLoginFinal = Console.ReadLine() ?? string.Empty;
 
-Login2 login2 = new Login2(nomeDeLoginFinal, senhaDeLoginFinal, nomeDeLoginInicial, senhaDeLoginInicial);
+LoginFinal loginFinal = new LoginFinal();
+await loginFinal.ConfereLoginInicialComLoginFinal(nomeDeLoginFinal, senhaDeLoginFinal, nomeDeLoginInicial, senhaDeLoginInicial);
 
 OperacoesBancarias op = new OperacoesBancarias();
 
